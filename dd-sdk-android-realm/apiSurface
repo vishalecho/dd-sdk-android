@@ -1,0 +1,1 @@
+fun <R> useWithRum((io.realm.Realm) -> R): R

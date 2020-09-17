@@ -205,6 +205,17 @@ The data on the disk will automatically be discarded if it gets too old to ensur
 
 ## Extensions
 
+### Apollo (GraphQL)
+
+If you use Apollo, let it use your `OkHttpClient`, and you'll get RUM and APM information about all the queries performed through Apollo client.
+
+```kotlin
+        val apolloClient =  ApolloClient.builder()
+                 .okHttpClient(okHttpClient)
+                 .serverUrl(<APOLLO_SERVER_URL>)
+                 .build()
+```
+
 ### Coil
 
 If you use Coil to load images in your application, take a look at Datadog's [dedicated library](https://github.com/DataDog/dd-sdk-android/tree/master/dd-sdk-android-coil).
@@ -216,6 +227,33 @@ If you use Fresco to load images in your application, take a look at Datadog's [
 ### Glide
 
 If you use Glide to load images in your application, take a look at our [dedicated library](https://github.com/DataDog/dd-sdk-android/tree/master/dd-sdk-android-glide).
+
+### Picasso
+
+If you use Picasso, let it use your `OkHttpClient`, and you'll get RUM and APM information about network requests made by Picasso.
+
+```kotlin
+        val picasso = Picasso.Builder(context)
+                .downloader(OkHttp3Downloader(okHttpClient))
+                // …
+                .build()
+        Picasso.setSingletonInstance(picasso)
+```
+
+### Realm
+
+If you use Realm in your application, take a look at Datadog's [dedicated library](https://github.com/DataDog/dd-sdk-android/tree/master/dd-sdk-android-realm).
+
+### Retrofit
+
+If you use Retrofit, let it use your `OkHttpClient`, and you'll get RUM and APM information about network requests made with Retrofit.
+
+```kotlin
+        val retrofitClient = Retrofit.Builder()
+                .client(okHttpClient)
+                // …
+                .build()
+```
 
 ### SQLite
 
@@ -234,40 +272,6 @@ RUM error event for it.
      ...
    
    }
-```
-
-### Picasso
-
-If you use Picasso, let it use your `OkHttpClient`, and you'll get RUM and APM information about network requests made by Picasso.
-
-```kotlin
-        val picasso = Picasso.Builder(context)
-                .downloader(OkHttp3Downloader(okHttpClient))
-                // …
-                .build()
-        Picasso.setSingletonInstance(picasso)
-```
-
-### Retrofit
-
-If you use Retrofit, let it use your `OkHttpClient`, and you'll get RUM and APM information about network requests made with Retrofit.
-
-```kotlin
-        val retrofitClient = Retrofit.Builder()
-                .client(okHttpClient)
-                // …
-                .build()
-```
-
-### Apollo (GraphQL)
-
-If you use Apollo, let it use your `OkHttpClient`, and you'll get RUM and APM information about all the queries performed through Apollo client.
-
-```kotlin
-        val apolloClient =  ApolloClient.builder()
-                 .okHttpClient(okHttpClient)
-                 .serverUrl(<APOLLO_SERVER_URL>)
-                 .build()
 ```
 
 ## Further Reading
