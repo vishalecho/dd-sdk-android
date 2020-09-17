@@ -156,6 +156,7 @@ dependencies {
     "coilApi"(project(":dd-sdk-android-coil"))
     "glideApi"(project(":dd-sdk-android-glide"))
     "frescoApi"(project(":dd-sdk-android-fresco"))
+    "realmApi"(project(":dd-sdk-android-realm"))
 
     // Android dependencies
     implementation(Dependencies.Libraries.AndroidXMultidex)
